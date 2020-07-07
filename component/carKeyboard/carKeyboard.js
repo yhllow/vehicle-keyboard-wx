@@ -47,7 +47,7 @@ Component({
     methods: {
         proTap(e) { //点击省份
             let province = e.currentTarget.dataset.province;
-            const {carNumArr, selectInputIndex} = this.data;
+            const { carNumArr, selectInputIndex } = this.data;
             carNumArr[selectInputIndex] = province;
             // 选择车牌号时触发
             this.setData({
@@ -60,7 +60,7 @@ Component({
         },
         strTap(e) { //点击字母数字
             const str = e.currentTarget.dataset.str;
-            const {carNumArr, selectInputIndex} = this.data;
+            const { carNumArr, selectInputIndex } = this.data;
             carNumArr[selectInputIndex] = str;
             this.setData({
                 carNumArr,
@@ -72,7 +72,7 @@ Component({
         },
         colorTap(e) {
             let color = e.currentTarget.dataset.color;
-            const {carNumArr, selectInputIndex} = this.data;
+            const { carNumArr, selectInputIndex } = this.data;
             carNumArr[selectInputIndex] = color;
             // 选择车牌号时触发
             this.setData({
@@ -84,7 +84,7 @@ Component({
             this.switchKeyboard(this.data.selectInputIndex);
         },
         inputCarNum(e) {
-            const {index} = e.currentTarget.dataset;
+            const { index } = e.currentTarget.dataset;
             this.setData({
                 showCarKeyboard: true,
                 selectInputIndex: index
@@ -120,7 +120,7 @@ Component({
             }
         },
         backSpace() { //删除
-            let {carNumArr, selectInputIndex} = this.data;
+            let { carNumArr, selectInputIndex } = this.data;
             if (!carNumArr[selectInputIndex]) {
                 selectInputIndex = selectInputIndex !== INPUT_INDEX.FIRST ? selectInputIndex - 1 : selectInputIndex;
             }
@@ -134,7 +134,7 @@ Component({
         },
         // 只有输入内容的车牌号位数合法时，展示确认按钮
         btnDisabled() {
-            const {carNumArr, inputColor} = this.data;
+            const { carNumArr, inputColor } = this.data;
             const disabled = carNumArr.some((item, index) => {
                 // 需要输入颜色，所有位都不能为空
                 if (inputColor) {
@@ -150,7 +150,7 @@ Component({
             return disabled;
         },
         onCancel() {
-            this.setData({carNumArr: EmptyArray});
+            this.setData({ carNumArr: EmptyArray });
             this.triggerEvent('onCancel');
         },
         onOk() {
@@ -160,7 +160,7 @@ Component({
 
 
         init() {
-            let carNum = this.data.carNum;
+            const { carNum } = this.properties;
             // console.log('carNum', carNum);
             if (carNum) {
                 let carNumArr = carNum.match(/./g);
@@ -170,7 +170,7 @@ Component({
                 carNumArr = carNumArr.concat(EmptyArray);
                 // console.log('carNumArr', carNumArr);
 
-                this.setData({carNumArr}, () => {
+                this.setData({ carNumArr }, () => {
                     this.setData({
                         btnDisabled: this.btnDisabled()
                     })
