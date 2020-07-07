@@ -6,7 +6,7 @@
 
 ![](keyboard.png)
 
-* 输入法二
+* 输入法二  
 从 https://github.com/parkingwang/vehicle-keyboard-js.git 移植的适合微信小程序的车牌输入法插件（keyboard），支持新能源车牌和特殊车牌。（fork自https://github.com/songtao542/vehicle-keyboard-wx）
 
 ![](keyboard.jpg)
