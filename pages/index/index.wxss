@@ -9,7 +9,7 @@
   height: 90rpx;
   box-sizing: border-box;
   text-align: center;
-  line-height: 900rpx;
+  line-height: 90rpx;
   /* letter-spacing: 1rpx; */
   margin: 20rpx auto;
   color: #000;

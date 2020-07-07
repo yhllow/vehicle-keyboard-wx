@@ -15,60 +15,75 @@ Page({
       keyboardtype: 0,
       usermode: 0
     },
-    base64: ""
+    base64: "",
+
+    carNum: '',
+    showKeyboard: false,
+  },
+
+  inputCarNum() {
+    this.setData({ showKeyboard: true })
+  },
+  onOk(e) {
+    console.log(e.detail, '输入的车牌号')
+    let carNum = e.detail;
+    this.setData({ carNum, showKeyboard: false });
+  },
+  onCancel() {
+    this.setData({ showKeyboard: false })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function (options) { },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
 
-  plateColorChange: function(e) {
+  plateColorChange: function (e) {
     var selectColorIndex = e.detail.value
     var keyboardValue = this.data.keyboardValue
     var usermode = keyboardValue.usermode
@@ -91,7 +106,7 @@ Page({
   /**
    * 输入框显示键盘状态
    */
-  showKeyboard: function() {
+  showKeyboard: function () {
     var self = this;
     self.bindCursorAnimation();
     self.setData({
@@ -101,7 +116,7 @@ Page({
   /**
    * 点击页面隐藏键盘事件
    */
-  hideKeyboard: function() {
+  hideKeyboard: function () {
     var self = this;
     self.clearCursorAnimation();
     if (self.data.isKeyboardShow) {
@@ -114,7 +129,7 @@ Page({
   /**
    * 输入框聚焦触发，显示键盘
    */
-  toggleKeyboard: function() {
+  toggleKeyboard: function () {
     var self = this;
     if (self.data.isKeyboardShow) {
       //说明键盘是显示的，再次点击要隐藏键盘
@@ -128,7 +143,7 @@ Page({
       });
     }
   },
-  bindCursorAnimation: function() {
+  bindCursorAnimation: function () {
     var self = this;
     var animation = wx.createAnimation({
       duration: 200,
@@ -138,7 +153,7 @@ Page({
     self.opacity = 0;
     animation.opacity(0).step();
 
-    self.interval = setInterval(function() {
+    self.interval = setInterval(function () {
       var animation = self.animation;
       if (self.opacity == 0) {
         self.opacity = 1;
@@ -155,7 +170,7 @@ Page({
       animation: animation.export()
     })
   },
-  clearCursorAnimation: function() {
+  clearCursorAnimation: function () {
     var self = this;
     clearInterval(self.interval);
     self.setData({
@@ -163,10 +178,10 @@ Page({
     })
   },
 
-  doNothing: function() {
+  doNothing: function () {
 
   },
-  onPlateInputCompleted: function(e) {
+  onPlateInputCompleted: function (e) {
     this.hideKeyboard()
     var number = e.detail.number
     var keyboardValue = this.data.keyboardValue
@@ -176,11 +191,11 @@ Page({
       keyboardValue: keyboardValue
     })
   },
-  onKeyboardMessage: function(e) {
+  onKeyboardMessage: function (e) {
     console.log("onKeyboardMessage=", e.detail)
   },
 
-  getvehicleColor: function() {
+  getvehicleColor: function () {
     var vehicleColorIndex = this.data.vehicleColorIndex;
     //"0":蓝牌", "1":黄牌", "2":黑牌", "3":白牌", "4":渐变绿色", "5":"黄绿双拼色", "9":"蓝白渐变色"
     if (vehicleColorIndex == 0) {
@@ -200,20 +215,20 @@ Page({
     }
   },
 
-  onBaseComplete: function(e) {
+  onBaseComplete: function (e) {
     console.log("eeeeeeeeeeee", e)
     this.setData({
       base64: e.detail
     })
   },
 
-  chooseImage: function() {
+  chooseImage: function () {
     var that = this
     wx.chooseImage({
       sourceType: ['camera', 'album'],
       sizeType: ['compressed'],
       count: 1,
-      success: function(res) {
+      success: function (res) {
         var selectImage = res.tempFilePaths[0];
         console.log("selectImage----------->" + selectImage)
         var imb = that.selectComponent("#imb");
