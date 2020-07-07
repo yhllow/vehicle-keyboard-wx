@@ -6,11 +6,9 @@
 
   * ```<carKeyboard carNum="{{carNum}}" inputColor="{{true}}" bind:onOk="onOk" bind:onCancel="onCancel" />```
 
-    ![](keyboard.png)
-
   * ```<carKeyboard carNum="{{carNum}}" inputColor="{{false}}" bind:onOk="onOk" bind:onCancel="onCancel" />```
 
-    ![](keyboard1.png)
+    ![](keyboard.png)    ![](keyboard1.png)
 
 
 
